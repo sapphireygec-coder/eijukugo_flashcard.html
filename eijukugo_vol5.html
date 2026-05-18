@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>英熟語 Flashcard Vol.5 — N05</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0d0f14;--bg2:#141720;--bg3:#1c2030;--bg4:#242840;--accent:#3b82f6;--accent2:#60a5fa;--accent3:#1d4ed8;--ok:#22c55e;--ng:#ef4444;--warn:#f59e0b;--text:#e2e8f0;--text2:#94a3b8;--text3:#64748b;--border:#2d3748;--border2:#374151;--A:#3b82f6;--B:#22c55e;--C:#a855f7;--D:#f59e0b;--font:'Times New Roman','Noto Serif JP',Georgia,serif;}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh}
+.pbar{height:3px;background:var(--bg3);position:fixed;top:0;left:0;right:0;z-index:20}.pfill{height:100%;background:var(--accent);transition:width .35s ease}
+#hdr{background:var(--bg2);border-bottom:1px solid var(--border);padding:9px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:3px;z-index:10}
+.hl{display:flex;align-items:center;gap:10px}
+.badge{background:var(--accent3);color:#fff;font-size:11px;font-weight:700;padding:2px 9px;border-radius:4px;letter-spacing:.5px;font-family:sans-serif}
+.htitle{font-size:14px;font-weight:700;color:var(--text)}
+.hr{display:flex;align-items:center;gap:18px}
+.scbox{display:flex;gap:14px;align-items:center;font-size:13px;font-family:sans-serif}
+.sc-ok{color:var(--ok);font-weight:700}.sc-ng{color:var(--ng);font-weight:700}.sc-lbl{color:var(--text3)}.sc-pos{color:var(--text2);font-weight:600}
+.timer{font-size:14px;color:var(--text2);font-family:'Courier New',monospace;min-width:52px;text-align:right}
+#tabs{background:var(--bg2);border-bottom:1px solid var(--border);display:flex;padding:0 16px;overflow-x:auto}
+.tab{padding:10px 15px;font-size:13px;font-weight:700;cursor:pointer;border-bottom:2px solid transparent;color:var(--text3);transition:.2s;white-space:nowrap;flex-shrink:0;font-family:sans-serif}
+.tab.active.A{border-color:var(--A);color:var(--A)}.tab.active.B{border-color:var(--B);color:var(--B)}.tab.active.C{border-color:var(--C);color:var(--C)}.tab.active.D{border-color:var(--D);color:var(--D)}
+#main{padding:20px 16px;max-width:720px;margin:0 auto}
+.qcard{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:24px}
+.qmeta{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.qnum-badge{font-size:11px;font-weight:700;padding:3px 11px;border-radius:20px;border:1px solid;font-family:sans-serif}
+.qnum-badge.A{color:var(--A);border-color:var(--A);background:rgba(59,130,246,.1)}.qnum-badge.B{color:var(--B);border-color:var(--B);background:rgba(34,197,94,.1)}.qnum-badge.C{color:var(--C);border-color:var(--C);background:rgba(168,85,247,.1)}.qnum-badge.D{color:var(--D);border-color:var(--D);background:rgba(245,158,11,.1)}
+.qtype-lbl{font-size:11px;color:var(--text3);font-family:sans-serif}
+.qtext{font-size:17px;line-height:1.9;color:var(--text);white-space:pre-line;margin-bottom:2px}
+.qtext-jp{font-size:17px;line-height:1.8;color:var(--text);font-weight:500;margin-bottom:10px}
+.qtext-en{font-size:16px;line-height:2.1;color:var(--text2);font-style:italic}
+.qtext-guide{font-size:13px;color:var(--text3);margin-top:8px;padding:7px 10px;background:var(--bg3);border-radius:6px;border-left:3px solid var(--text3);font-family:sans-serif}
+.blank{display:inline-block;min-width:100px;border-bottom:2px solid var(--accent);color:var(--accent2);font-weight:700;text-align:center;padding:0 8px;vertical-align:bottom;line-height:1.8;margin:0 2px}
+.abtn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border2);color:var(--accent2);padding:5px 13px;border-radius:6px;font-size:12px;cursor:pointer;margin-top:10px;transition:.2s;font-family:sans-serif}
+.abtn:hover{background:var(--bg3);border-color:var(--accent)}.abtn svg{width:13px;height:13px;fill:currentColor}
+.choices{display:flex;flex-direction:column;gap:9px;margin-top:18px}
+.cbtn{background:var(--bg3);border:1px solid var(--border2);color:var(--text);padding:12px 15px;border-radius:9px;font-size:15px;text-align:left;cursor:pointer;transition:.15s;display:flex;align-items:center;gap:11px;line-height:1.5;font-family:var(--font)}
+.cbtn:hover:not(:disabled){background:var(--bg4);border-color:var(--accent)}.cbtn .lbl{font-size:11px;color:var(--text3);font-weight:700;min-width:20px;flex-shrink:0;font-family:sans-serif}
+.cbtn.ok{background:rgba(34,197,94,.12);border-color:var(--ok);color:var(--ok)}.cbtn.ng{background:rgba(239,68,68,.12);border-color:var(--ng);color:var(--ng)}.cbtn:disabled{cursor:default}
+.iarea{margin-top:16px}
+.qtimer-wrap{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.qtimer-bar-bg{flex:1;height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.qtimer-bar{height:100%;background:var(--accent);border-radius:3px;transition:width .9s linear}
+.qtimer-bar.warn{background:var(--warn)}.qtimer-bar.danger{background:var(--ng)}
+.qtimer-num{font-size:13px;font-weight:700;color:var(--text2);min-width:28px;text-align:right;font-family:'Courier New',monospace}
+.qtimer-num.warn{color:var(--warn)}.qtimer-num.danger{color:var(--ng)}
+.irow{display:flex;gap:9px;align-items:stretch}
+.tinput{flex:1;background:var(--bg3);border:1px solid var(--border2);color:var(--text);padding:10px 14px;border-radius:9px;font-size:15px;font-family:var(--font);outline:none;transition:.2s}
+.tinput:focus{border-color:var(--accent);background:var(--bg4)}.tinput.ok{border-color:var(--ok);background:rgba(34,197,94,.08);color:var(--ok)}.tinput.ng{border-color:var(--ng);background:rgba(239,68,68,.08);color:var(--ng)}
+.sbtn{background:var(--accent3);border:none;color:#fff;padding:10px 18px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;white-space:nowrap;font-family:sans-serif}
+.sbtn:hover{background:var(--accent)}.sbtn:disabled{opacity:.4;cursor:default}
+.hbtn{background:none;border:none;color:var(--warn);font-size:12px;cursor:pointer;padding:5px 0;margin-top:4px;display:none;font-family:sans-serif}
+.hbox{font-size:12px;color:var(--warn);margin-top:5px;padding:6px 10px;background:rgba(245,158,11,.08);border-radius:6px;border:1px solid rgba(245,158,11,.25);display:none;font-family:sans-serif}
+.fb{border-radius:9px;padding:14px 16px;margin-top:14px;display:none;line-height:1.7}.fb.ok{background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.25)}.fb.ng{background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.25)}
+.fb-tabs{display:flex;margin-bottom:10px;border-bottom:1px solid var(--border2)}
+.fbtab{padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer;border-bottom:2px solid transparent;color:var(--text3);transition:.15s;font-family:sans-serif}.fbtab.active{border-color:var(--accent2);color:var(--accent2)}
+.fbc{display:none}.fbc.show{display:block}
+.fb-ans-row{font-size:14px;margin-bottom:7px;font-family:sans-serif}.fb-ans{color:var(--accent2);font-weight:700;font-family:var(--font)}.fb-note{font-size:13px;color:var(--text2);line-height:1.75;font-family:sans-serif}.fb-jp{font-size:13px;color:var(--text);line-height:1.8;padding:8px 0;font-family:sans-serif}
+.nxtbtn{display:none;width:100%;margin-top:14px;background:var(--bg3);border:1px solid var(--border2);color:var(--text);padding:12px;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer;transition:.2s;text-align:right;font-family:sans-serif}.nxtbtn:hover{background:var(--bg4);border-color:var(--accent)}
+.scard{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:36px 24px;text-align:center}
+.s-grade{font-size:42px;font-weight:700;letter-spacing:2px;margin-bottom:4px}
+.s-comment{font-size:15px;margin-bottom:20px;font-family:sans-serif}
+.sbig{font-size:68px;font-weight:700;color:var(--accent2);line-height:1}
+.slbl{font-size:15px;color:var(--text2);margin-top:8px;margin-bottom:28px;font-family:sans-serif}
+.ssecs{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:28px}.ssec{border-radius:9px;padding:15px;text-align:center}
+.ssec.A{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3)}.ssec.B{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3)}.ssec.C{background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.3)}.ssec.D{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3)}
+.sn{font-size:11px;font-weight:700;line-height:1.4;font-family:sans-serif}.ssec.A .sn{color:var(--A)}.ssec.B .sn{color:var(--B)}.ssec.C .sn{color:var(--C)}.ssec.D .sn{color:var(--D)}
+.sv{font-size:26px;font-weight:700;margin-top:5px}.ssec.A .sv{color:var(--A)}.ssec.B .sv{color:var(--B)}.ssec.C .sv{color:var(--C)}.ssec.D .sv{color:var(--D)}
+.rbtn{width:100%;padding:13px;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer;border:none;margin-top:10px;transition:.2s;font-family:sans-serif}.rbtn.p{background:var(--accent3);color:#fff}.rbtn.p:hover{background:var(--accent)}.rbtn.s{background:var(--bg3);color:var(--text);border:1px solid var(--border2)}.rbtn.s:hover{background:var(--bg4)}
+@media(max-width:480px){.qtext,.qtext-jp,.qtext-en{font-size:15px}.htitle{font-size:12px}.tab{padding:9px 11px;font-size:12px}.blank{min-width:76px}}</style>
+</head>
+<body>
+<div class="pbar"><div class="pfill" id="pf"></div></div>
+<div id="hdr">
+  <div class="hl"><span class="badge">Vol.2</span><span class="htitle">英熟語 Flashcard — N05</span></div>
+  <div class="hr">
+    <div class="scbox">
+      <span><span class="sc-ok" id="sc-ok">0</span><span class="sc-lbl"> 正解</span></span>
+      <span><span class="sc-ng" id="sc-ng">0</span><span class="sc-lbl"> 不正解</span></span>
+      <span class="sc-pos" id="sc-pos">1/20問</span>
+    </div>
+    <div class="timer" id="tmr">0:00</div>
+  </div>
+</div>
+<div id="tabs">
+  <div class="tab A" id="tab-A">A：4択</div>
+  <div class="tab B" id="tab-B">B：連語補充</div>
+  <div class="tab C" id="tab-C">C：1語言換え</div>
+  <div class="tab D" id="tab-D">D：和→英</div>
+</div>
+<div id="main"></div>
+<script>
+const MP3={f1:'\u82f1\u719f\u8a9eTargetno.2-1mp3.mp3',f2:'\u82f1\u719f\u8a9eTargetno2-2.mp3',f3:'\u82f1\u719f\u8a9eTargetno2-3mp3.mp3',f4:'\u82f1\u719f\u8a9eTargetno3-3\u8ffd\u52a0.mp3'};
+const POOL = [
+  {
+    "id": "A1",
+    "sec": "A",
+    "sent": 3,
+    "q": "From the footprints outside, it was clear the burglar had ____ ____ through the window.",
+    "opts": [
+      "broken in",
+      "broken out",
+      "broken up",
+      "broken off"
+    ],
+    "a": "broken in",
+    "n": "break in「侵入する」。break out「勃発する」、break up「別れる」との区別が重要。",
+    "jp": "外の足跡から、泥棒が窓から侵入したことは明らかだった。",
+    "audio": {
+      "file": "f1",
+      "start": 5.11,
+      "end": 9.987
+    }
+  },
+  {
+    "id": "A2",
+    "sec": "A",
+    "sent": 5,
+    "q": "It was in 1918 when the so-called Spanish flu pandemic ____ ____ worldwide.",
+    "opts": [
+      "broke out",
+      "broke in",
+      "broke up",
+      "broke down"
+    ],
+    "a": "broke out",
+    "n": "break out「（戦争・疫病などが）勃発する・発生する」。break in「侵入する」との区別。",
+    "jp": "いわゆるスペイン風邪のパンデミックが世界中で勃発したのは1918年のことだった。",
+    "audio": {
+      "file": "f1",
+      "start": 10.694,
+      "end": 17.002
+    }
+  },
+  {
+    "id": "A3",
+    "sec": "A",
+    "sent": 7,
+    "q": "The ice at both poles is ____ ____ earlier every year due to global warming.",
+    "opts": [
+      "breaking up",
+      "breaking in",
+      "breaking out",
+      "breaking down"
+    ],
+    "a": "breaking up",
+    "n": "break up「（氷などが）砕ける・崩壊する」。break down「故障する」との区別。",
+    "jp": "地球温暖化により、両極の氷は毎年ますます早く解け始めている。",
+    "audio": {
+      "file": "f1",
+      "start": 17.66,
+      "end": 22.954
+    }
+  },
+  {
+    "id": "A4",
+    "sec": "A",
+    "sent": 9,
+    "q": "The situation is extremely serious and ____ ____ immediate action.",
+    "opts": [
+      "calls for",
+      "calls on",
+      "calls out",
+      "calls off"
+    ],
+    "a": "calls for",
+    "n": "call for〜「〜を必要とする・〜を要求する」。call on「訪問する・求める」との区別。",
+    "jp": "状況は極めて深刻であり、即座の行動が求められている。",
+    "audio": {
+      "file": "f1",
+      "start": 23.907,
+      "end": 28.671
+    }
+  },
+  {
+    "id": "A5",
+    "sec": "A",
+    "sent": 11,
+    "q": "Professor Yoshida, could I ____ ____ you sometime next week at your office?",
+    "opts": [
+      "call on",
+      "call for",
+      "call up",
+      "call off"
+    ],
+    "a": "call on",
+    "n": "call on〜「〜を訪問する・〜に頼む」。call for「必要とする」との区別。",
+    "jp": "吉田教授、来週のいつかお時間をいただいてご助言をうかがいに研究室へ伺えますか？",
+    "audio": {
+      "file": "f1",
+      "start": 29.525,
+      "end": 34.58
+    }
+  },
+  {
+    "id": "A6",
+    "sec": "A",
+    "sent": 14,
+    "q": "Her points ____ ____ very well as she spoke, so we really enjoyed her talk.",
+    "opts": [
+      "came across",
+      "came out",
+      "came up",
+      "came to"
+    ],
+    "a": "came across",
+    "n": "come across「（意図・意味が）伝わる」。come across「偶然出会う」の意味もある。",
+    "jp": "彼女の要点は話しながらとてもよく伝わってきたので、私たちは本当に楽しんだ。",
+    "audio": {
+      "file": "f1",
+      "start": 41.055,
+      "end": 45.819
+    }
+  },
+  {
+    "id": "A7",
+    "sec": "A",
+    "sent": 16,
+    "q": "A friend of mine says he's ____ ____ realize he doesn't have the talent to become a writer.",
+    "opts": [
+      "come to",
+      "come across",
+      "come out",
+      "come up"
+    ],
+    "a": "come to",
+    "n": "come to do「〜するようになる」。come to realize「気づくようになる」。",
+    "jp": "友人の一人が、自分には作家になる才能がないと気づいてきたと言っている。",
+    "audio": {
+      "file": "f1",
+      "start": 47.074,
+      "end": 52.308
+    }
+  },
+  {
+    "id": "A8",
+    "sec": "A",
+    "sent": 19,
+    "q": "After three hours of effort to solve the problem, my patience ____ ____.",
+    "opts": [
+      "gave out",
+      "gave up",
+      "gave in",
+      "gave off"
+    ],
+    "a": "gave out",
+    "n": "give out「尽きる・なくなる」。give up「諦める」、give in「降参する」との区別。",
+    "jp": "問題を解こうと3時間努力した後、私の忍耐は尽きた。",
+    "audio": {
+      "file": "f1",
+      "start": 59.586,
+      "end": 64.558
+    }
+  },
+  {
+    "id": "A9",
+    "sec": "A",
+    "sent": 23,
+    "q": "My alarm didn't ____ ____ this morning, so I overslept and was late for school.",
+    "opts": [
+      "go off",
+      "go on",
+      "go out",
+      "go over"
+    ],
+    "a": "go off",
+    "n": "go off「（アラームが）鳴る・爆発する」。go on「続く」、go out「外出する」との区別。",
+    "jp": "今朝目覚ましが鳴らなかったので、寝過ごして学校に遅刻してしまった。",
+    "audio": {
+      "file": "f1",
+      "start": 65.733,
+      "end": 70.246
+    }
+  },
+  {
+    "id": "A10",
+    "sec": "A",
+    "sent": 36,
+    "q": "We were ____ ____ by a traffic jam on the way and couldn't make it to the meeting in time.",
+    "opts": [
+      "held up",
+      "held on",
+      "held out",
+      "held back"
+    ],
+    "a": "held up",
+    "n": "hold up「遅らせる・足止めする」。hold on「待つ」、hold out「持ちこたえる」との区別。",
+    "jp": "途中で交通渋滞に巻き込まれ、会議に間に合わなかった。",
+    "audio": {
+      "file": "f1",
+      "start": 74.513,
+      "end": 79.223
+    }
+  },
+  {
+    "id": "A11",
+    "sec": "A",
+    "sent": 43,
+    "q": "Sota always tries to ____ ____ new words in his dictionary whenever they come up.",
+    "opts": [
+      "look up",
+      "look for",
+      "look into",
+      "look out"
+    ],
+    "a": "look up",
+    "n": "look up「（辞書などで）調べる」。look for「探す」、look into「調査する」との区別。",
+    "jp": "ソウタはいつも、知らない単語が出てきたらすぐ辞書で調べようとする。",
+    "audio": {
+      "file": "f1",
+      "start": 87.123,
+      "end": 92.033
+    }
+  },
+  {
+    "id": "A12",
+    "sec": "A",
+    "sent": 52,
+    "q": "WHO ____ ____ the World Health Organization.",
+    "opts": [
+      "stands for",
+      "stands by",
+      "stands out",
+      "stands up"
+    ],
+    "a": "stands for",
+    "n": "stand for「〜を表す・〜の略である」。stand by「支持する」、stand out「目立つ」との区別。",
+    "jp": "WHOは世界保健機関を表す。",
+    "audio": {
+      "file": "f1",
+      "start": 107.288,
+      "end": 111.027
+    }
+  },
+  {
+    "id": "A13",
+    "sec": "A",
+    "sent": 86,
+    "q": "It is all ____ ____ the parents to decide which schools to choose for their young children.",
+    "opts": [
+      "up to",
+      "due to",
+      "according to",
+      "next to"
+    ],
+    "a": "up to",
+    "n": "be up to〜「〜次第である・〜に任せられている」。due to「〜のせいで」との混同に注意。",
+    "jp": "どの学校を幼い子供たちのために選ぶかを決めるのは、完全に親次第だ。",
+    "audio": {
+      "file": "f2",
+      "start": 18.778,
+      "end": 23.824
+    }
+  },
+  {
+    "id": "A14",
+    "sec": "A",
+    "sent": 153,
+    "q": "When driving on an expressway, we must ____ ____ ____ that we don't run out of gas.",
+    "opts": [
+      "see to it",
+      "look into it",
+      "make sure of",
+      "find out for"
+    ],
+    "a": "see to it",
+    "n": "see to it that〜「〜するよう取り計らう・確実に〜する」。",
+    "jp": "高速道路を運転する時は、ガス欠にならないよう気をつけなければならない。",
+    "audio": {
+      "file": "f3",
+      "start": 64.893,
+      "end": 70.09
+    }
+  },
+  {
+    "id": "A15",
+    "sec": "A",
+    "sent": 168,
+    "q": "I hope you'll ____ ____ when you're in the neighborhood.",
+    "opts": [
+      "drop in",
+      "drop out",
+      "drop off",
+      "drop by"
+    ],
+    "a": "drop in",
+    "n": "drop in「立ち寄る」＝stop by。drop out「脱退する」、drop off「降ろす」との区別。",
+    "jp": "どこに住んでいるかわかったので、近くにいる時にはぜひ立ち寄ってください。",
+    "audio": {
+      "file": "f3",
+      "start": 128.026,
+      "end": 132.054
+    }
+  },
+  {
+    "id": "B1",
+    "sec": "B",
+    "sent": 3,
+    "q": "it was clear the burglar had broken ____ through the window.",
+    "a": "in",
+    "n": "break in「侵入する」。",
+    "jp": "外の足跡から、泥棒が窓から侵入したことは明らかだった。",
+    "hint": "broken ___",
+    "audio": {
+      "file": "f1",
+      "start": 5.11,
+      "end": 9.987
+    }
+  },
+  {
+    "id": "B2",
+    "sec": "B",
+    "sent": 5,
+    "q": "the so-called Spanish flu pandemic ____ ____ worldwide.",
+    "a": "broke out",
+    "n": "break out「勃発する・発生する」。",
+    "jp": "いわゆるスペイン風邪のパンデミックが世界中で勃発したのは1918年のことだった。",
+    "hint": "broke ___",
+    "audio": {
+      "file": "f1",
+      "start": 10.694,
+      "end": 17.002
+    }
+  },
+  {
+    "id": "B3",
+    "sec": "B",
+    "sent": 7,
+    "q": "The ice at both poles is breaking ____ earlier every year.",
+    "a": "up",
+    "n": "break up「砕ける・崩壊する」。",
+    "jp": "地球温暖化により、両極の氷は毎年ますます早く解け始めている。",
+    "hint": "breaking ___",
+    "audio": {
+      "file": "f1",
+      "start": 17.66,
+      "end": 22.954
+    }
+  },
+  {
+    "id": "B4",
+    "sec": "B",
+    "sent": 9,
+    "q": "The situation is extremely serious and calls ____ immediate action.",
+    "a": "for",
+    "n": "call for〜「〜を必要とする」。",
+    "jp": "状況は極めて深刻であり、即座の行動が求められている。",
+    "hint": "calls ___",
+    "audio": {
+      "file": "f1",
+      "start": 23.907,
+      "end": 28.671
+    }
+  },
+  {
+    "id": "B5",
+    "sec": "B",
+    "sent": 11,
+    "q": "could I call ____ you sometime next week at your office?",
+    "a": "on",
+    "n": "call on〜「〜を訪問する」。",
+    "jp": "吉田教授、来週のいつかお時間をいただいてご助言をうかがいに研究室へ伺えますか？",
+    "hint": "call ___",
+    "audio": {
+      "file": "f1",
+      "start": 29.525,
+      "end": 34.58
+    }
+  },
+  {
+    "id": "B6",
+    "sec": "B",
+    "sent": 14,
+    "q": "Her points came ____ very well as she spoke.",
+    "a": "across",
+    "n": "come across「伝わる」。",
+    "jp": "彼女の要点は話しながらとてもよく伝わってきたので、私たちは本当に楽しんだ。",
+    "hint": "came ___",
+    "audio": {
+      "file": "f1",
+      "start": 41.055,
+      "end": 45.819
+    }
+  },
+  {
+    "id": "B7",
+    "sec": "B",
+    "sent": 16,
+    "q": "he's come ____ realize he doesn't have the talent to become a writer.",
+    "a": "to",
+    "n": "come to do「〜するようになる」。",
+    "jp": "友人の一人が、自分には作家になる才能がないと気づいてきたと言っている。",
+    "hint": "come ___",
+    "audio": {
+      "file": "f1",
+      "start": 47.074,
+      "end": 52.308
+    }
+  },
+  {
+    "id": "B8",
+    "sec": "B",
+    "sent": 19,
+    "q": "After three hours of effort, my patience gave ____.",
+    "a": "out",
+    "n": "give out「尽きる・なくなる」。",
+    "jp": "問題を解こうと3時間努力した後、私の忍耐は尽きた。",
+    "hint": "gave ___",
+    "audio": {
+      "file": "f1",
+      "start": 59.586,
+      "end": 64.558
+    }
+  },
+  {
+    "id": "B9",
+    "sec": "B",
+    "sent": 23,
+    "q": "My alarm didn't go ____ this morning.",
+    "a": "off",
+    "n": "go off「（アラームが）鳴る」。",
+    "jp": "今朝目覚ましが鳴らなかったので、寝過ごして学校に遅刻してしまった。",
+    "hint": "go ___",
+    "audio": {
+      "file": "f1",
+      "start": 65.733,
+      "end": 70.246
+    }
+  },
+  {
+    "id": "B10",
+    "sec": "B",
+    "sent": 36,
+    "q": "We were held ____ by a traffic jam on the way.",
+    "a": "up",
+    "n": "hold up「遅らせる・足止めする」。",
+    "jp": "途中で交通渋滞に巻き込まれ、会議に間に合わなかった。",
+    "hint": "held ___",
+    "audio": {
+      "file": "f1",
+      "start": 74.513,
+      "end": 79.223
+    }
+  },
+  {
+    "id": "B11",
+    "sec": "B",
+    "sent": 43,
+    "q": "Sota always tries to look ____ new words in his dictionary.",
+    "a": "up",
+    "n": "look up「（辞書で）調べる」。",
+    "jp": "ソウタはいつも、知らない単語が出てきたらすぐ辞書で調べようとする。",
+    "hint": "look ___",
+    "audio": {
+      "file": "f1",
+      "start": 87.123,
+      "end": 92.033
+    }
+  },
+  {
+    "id": "B12",
+    "sec": "B",
+    "sent": 65,
+    "q": "Please don't forget to turn ____ your report tomorrow.",
+    "a": "in",
+    "n": "turn in「提出する」＝hand in。",
+    "jp": "明日オフィスに戻ったとき、レポートを提出することを忘れないでください。",
+    "hint": "turn ___",
+    "audio": {
+      "file": "f1",
+      "start": 136.262,
+      "end": 140.496
+    }
+  },
+  {
+    "id": "B13",
+    "sec": "B",
+    "sent": 93,
+    "q": "All ____ Peter were unable to get to class on time.",
+    "a": "but",
+    "n": "all but〜「〜を除いて全員」。",
+    "jp": "ピーター以外は全員、バスが運行していなかったため、時間どおりに授業に出られなかった。",
+    "hint": "All ___",
+    "audio": {
+      "file": "f2",
+      "start": 56.642,
+      "end": 62.497
+    }
+  },
+  {
+    "id": "B14",
+    "sec": "B",
+    "sent": 129,
+    "q": "Maki longs ____ the chance to see her family.",
+    "a": "for",
+    "n": "long for〜「〜を切望する」。",
+    "jp": "6か月離れていた後、マキは家族に会う機会を切望している。",
+    "hint": "longs ___",
+    "audio": {
+      "file": "f3",
+      "start": 18.495,
+      "end": 24.118
+    }
+  },
+  {
+    "id": "B15",
+    "sec": "B",
+    "sent": 116,
+    "q": "I ran ____ Mary's brother at the bus stop yesterday.",
+    "a": "into",
+    "n": "run into「偶然出会う」。",
+    "jp": "昨日、バス停でメアリーの兄に偶然会った。",
+    "hint": "ran ___",
+    "audio": {
+      "file": "f2",
+      "start": 125.223,
+      "end": 128.857
+    }
+  },
+  {
+    "id": "C1",
+    "sec": "C",
+    "sent": 3,
+    "q": "the burglar had broken in through the window.
+（下線部 broken in を1語に言い換えよ）",
+    "a": "entered / intruded",
+    "n": "break in ≒ enter「侵入する」。",
+    "jp": "外の足跡から、泥棒が窓から侵入したことは明らかだった。",
+    "hint": "",
+    "audio": {
+      "file": "f1",
+      "start": 5.11,
+      "end": 9.987
+    }
+  },
+  {
+    "id": "C2",
+    "sec": "C",
+    "sent": 5,
+    "q": "the Spanish flu pandemic broke out worldwide.
+（下線部 broke out を1語に言い換えよ）",
+    "a": "erupted / occurred",
+    "n": "break out ≒ erupt「勃発する」。",
+    "jp": "いわゆるスペイン風邪のパンデミックが世界中で勃発したのは1918年のことだった。",
+    "hint": "",
+    "audio": {
+      "file": "f1",
+      "start": 10.694,
+      "end": 17.002
+    }
+  },
+  {
+    "id": "C3",
+    "sec": "C",
+    "sent": 7,
+    "q": "The ice at both poles is breaking up earlier every year.
+（下線部 breaking up を1語に言い換えよ）",
+    "a": "melting / disintegrating",
+    "n": "break up ≒ melt / disintegrate「砕ける・崩壊する」。",
+    "jp": "地球温暖化により、両極の氷は毎年ますます早く解け始めている。",
+    "hint": "",
+    "audio": {
+      "file": "f1",
+      "start": 17.66,
+      "end": 22.954
+    }
+  },
+  {
+    "id": "C4",
+    "sec": "C",
+    "sent": 9,
+    "q": "The situation calls for immediate action.
+（下線部 calls for を1語に言い換えよ）",
+    "a": "requires / demands",
+    "n": "call for ≒ require「必要とする・要求する」。",
+    "jp": "状況は極めて深刻であり、即座の行動が求められている。",
+    "hint": "",
+    "audio": {
+      "file": "f1",
+      "start": 23.907,
+      "end": 28.671
+    }
+  },
+  {
+    "id": "C5",
+    "sec": "C",
+    "sent": 14,
+    "q": "Her points came across very well as she spoke.
+（下線部 came across を1語に言い換えよ）",
+    "a": "communicated / resonated",
+    "n": "come across ≒ communicate「伝わる」。",
+    "jp": "彼女の要点は話しながらとてもよく伝わってきたので、私たちは本当に楽しんだ。",
+    "hint": "",
+    "audio": {
+      "file": "f1",
+      "start": 41.055,
+      "end": 45.819
+    }
+  },
+  {
+    "id": "C6",
+    "sec": "C",
+    "sent": 16,
+    "q": "he's come to realize he doesn't have the talent.
+（下線部 come to realize を1語に言い換えよ）",
+    "a": "realized",
+    "n": "come to realize ≒ realized「気づくようになった」。",
+    "jp": "友人の一人が、自分には作家になる才能がないと気づいてきたと言っている。",
+    "hint": "",
+    "audio": {
+      "file": "f1",
+      "start": 47.074,
+      "end": 52.308
+    }
+  },
+  {
+    "id": "C7",
+    "sec": "C",
+    "sent": 19,
+    "q": "my patience gave out.
+（下線部 gave out を1語に言い換えよ）",
+    "a": "exhausted / ran out",
+    "n": "give out ≒ be exhausted「尽きる」。",
+    "jp": "問題を解こうと3時間努力した後、私の忍耐は尽きた。",
+    "hint": "",
+    "audio": {
+      "file": "f1",
+      "start": 59.586,
+      "end": 64.558
+    }
+  },
+  {
+    "id": "C8",
+    "sec": "C",
+    "sent": 23,
+    "q": "My alarm didn't go off this morning.
+（下線部 go off を1語に言い換えよ）",
+    "a": "ring / sound",
+    "n": "go off ≒ ring「（アラームが）鳴る」。",
+    "jp": "今朝目覚ましが鳴らなかったので、寝過ごして学校に遅刻してしまった。",
+    "hint": "",
+    "audio": {
+      "file": "f1",
+      "start": 65.733,
+      "end": 70.246
+    }
+  },
+  {
+    "id": "C9",
+    "sec": "C",
+    "sent": 36,
+    "q": "We were held up by a traffic jam.
+（下線部 held up を1語に言い換えよ）",
+    "a": "delayed / stopped",
+    "n": "hold up ≒ delay「遅らせる・足止めする」。",
+    "jp": "途中で交通渋滞に巻き込まれ、会議に間に合わなかった。",
+    "hint": "",
+    "audio": {
+      "file": "f1",
+      "start": 74.513,
+      "end": 79.223
+    }
+  },
+  {
+    "id": "C10",
+    "sec": "C",
+    "sent": 43,
+    "q": "Sota always tries to look up new words in his dictionary.
+（下線部 look up を1語に言い換えよ）",
+    "a": "check / consult",
+    "n": "look up ≒ check「調べる」。",
+    "jp": "ソウタはいつも、知らない単語が出てきたらすぐ辞書で調べようとする。",
+    "hint": "",
+    "audio": {
+      "file": "f1",
+      "start": 87.123,
+      "end": 92.033
+    }
+  },
+  {
+    "id": "C11",
+    "sec": "C",
+    "sent": 52,
+    "q": "WHO stands for the World Health Organization.
+（下線部 stands for を1語に言い換えよ）",
+    "a": "represents / means",
+    "n": "stand for ≒ represent「表す・意味する」。",
+    "jp": "WHOは世界保健機関を表す。",
+    "hint": "",
+    "audio": {
+      "file": "f1",
+      "start": 107.288,
+      "end": 111.027
+    }
+  },
+  {
+    "id": "C12",
+    "sec": "C",
+    "sent": 65,
+    "q": "turn in your report.
+（下線部 turn in を1語に言い換えよ）",
+    "a": "submit",
+    "n": "turn in ≒ submit「提出する」。",
+    "jp": "明日オフィスに戻ったとき、レポートを提出することを忘れないでください。",
+    "hint": "",
+    "audio": {
+      "file": "f1",
+      "start": 136.262,
+      "end": 140.496
+    }
+  },
+  {
+    "id": "C13",
+    "sec": "C",
+    "sent": 93,
+    "q": "All but Peter were unable to get to class on time.
+（下線部 All but を2語に言い換えよ）",
+    "a": "Everyone except",
+    "n": "All but〜 ≒ Everyone except〜「〜以外全員」。",
+    "jp": "ピーター以外は全員、バスが運行していなかったため、時間どおりに授業に出られなかった。",
+    "hint": "",
+    "audio": {
+      "file": "f2",
+      "start": 56.642,
+      "end": 62.497
+    }
+  },
+  {
+    "id": "C14",
+    "sec": "C",
+    "sent": 129,
+    "q": "Maki longs for the chance to see her family.
+（下線部 longs for を1語に言い換えよ）",
+    "a": "desires / craves",
+    "n": "long for ≒ desire「切望する」。",
+    "jp": "6か月離れていた後、マキは家族に会う機会を切望している。",
+    "hint": "",
+    "audio": {
+      "file": "f3",
+      "start": 18.495,
+      "end": 24.118
+    }
+  },
+  {
+    "id": "C15",
+    "sec": "C",
+    "sent": 168,
+    "q": "I hope you'll drop in when you're in the neighborhood.
+（下線部 drop in を1語に言い換えよ）",
+    "a": "visit",
+    "n": "drop in ≒ visit「立ち寄る」。",
+    "jp": "どこに住んでいるかわかったので、近くにいる時にはぜひ立ち寄ってください。",
+    "hint": "",
+    "audio": {
+      "file": "f3",
+      "start": 128.026,
+      "end": 132.054
+    }
+  },
+  {
+    "id": "D1",
+    "sec": "D",
+    "sent": 3,
+    "q": "外の足跡から、泥棒が窓から侵入したことは明らかだった。
+→ it was clear the burglar had ____ ____ through the window.",
+    "a": "broken in",
+    "n": "break in「侵入する」。",
+    "jp": "From the footprints outside, it was clear the burglar had broken in through the window.",
+    "hint": "broken ___",
+    "audio": {
+      "file": "f1",
+      "start": 5.11,
+      "end": 9.987
+    }
+  },
+  {
+    "id": "D2",
+    "sec": "D",
+    "sent": 5,
+    "q": "スペイン風邪のパンデミックが世界中で勃発した。
+→ the Spanish flu pandemic ____ ____ worldwide.",
+    "a": "broke out",
+    "n": "break out「勃発する・発生する」。",
+    "jp": "It was in 1918 when the so-called Spanish flu pandemic broke out worldwide.",
+    "hint": "broke ___",
+    "audio": {
+      "file": "f1",
+      "start": 10.694,
+      "end": 17.002
+    }
+  },
+  {
+    "id": "D3",
+    "sec": "D",
+    "sent": 7,
+    "q": "両極の氷は毎年ますます早く砕け始めている。
+→ The ice at both poles is ____ ____ earlier every year.",
+    "a": "breaking up",
+    "n": "break up「砕ける・崩壊する」。",
+    "jp": "The ice at both poles is breaking up earlier every year due to global warming.",
+    "hint": "breaking ___",
+    "audio": {
+      "file": "f1",
+      "start": 17.66,
+      "end": 22.954
+    }
+  },
+  {
+    "id": "D4",
+    "sec": "D",
+    "sent": 9,
+    "q": "状況は極めて深刻であり、即座の行動が求められている。
+→ The situation is extremely serious and ____ ____ immediate action.",
+    "a": "calls for",
+    "n": "call for〜「〜を必要とする・要求する」。",
+    "jp": "The situation is extremely serious and calls for immediate action.",
+    "hint": "calls ___",
+    "audio": {
+      "file": "f1",
+      "start": 23.907,
+      "end": 28.671
+    }
+  },
+  {
+    "id": "D5",
+    "sec": "D",
+    "sent": 11,
+    "q": "来週のいつかご助言をうかがいに研究室へ伺えますか？
+→ could I ____ ____ you sometime next week at your office?",
+    "a": "call on",
+    "n": "call on〜「〜を訪問する」。",
+    "jp": "Professor Yoshida, could I call on you sometime next week at your office for some advice?",
+    "hint": "call ___",
+    "audio": {
+      "file": "f1",
+      "start": 29.525,
+      "end": 34.58
+    }
+  },
+  {
+    "id": "D6",
+    "sec": "D",
+    "sent": 14,
+    "q": "彼女の要点は話しながらとてもよく伝わってきた。
+→ Her points ____ ____ very well as she spoke.",
+    "a": "came across",
+    "n": "come across「（意図が）伝わる」。",
+    "jp": "Her points came across very well as she spoke, so we really enjoyed her talk.",
+    "hint": "came ___",
+    "audio": {
+      "file": "f1",
+      "start": 41.055,
+      "end": 45.819
+    }
+  },
+  {
+    "id": "D7",
+    "sec": "D",
+    "sent": 16,
+    "q": "自分には作家になる才能がないと気づいてきた。
+→ he's ____ ____ realize he doesn't have the talent.",
+    "a": "come to",
+    "n": "come to do「〜するようになる」。",
+    "jp": "A friend of mine says he's come to realize he doesn't have the talent to become a writer.",
+    "hint": "come ___",
+    "audio": {
+      "file": "f1",
+      "start": 47.074,
+      "end": 52.308
+    }
+  },
+  {
+    "id": "D8",
+    "sec": "D",
+    "sent": 19,
+    "q": "3時間努力した後、私の忍耐は尽きた。
+→ After three hours of effort, my patience ____ ____.",
+    "a": "gave out",
+    "n": "give out「尽きる・なくなる」。",
+    "jp": "After three hours of effort to solve the problem, my patience gave out.",
+    "hint": "gave ___",
+    "audio": {
+      "file": "f1",
+      "start": 59.586,
+      "end": 64.558
+    }
+  },
+  {
+    "id": "D9",
+    "sec": "D",
+    "sent": 23,
+    "q": "今朝目覚ましが鳴らなかったので、寝過ごして遅刻してしまった。
+→ My alarm didn't ____ ____ this morning.",
+    "a": "go off",
+    "n": "go off「（アラームが）鳴る」。",
+    "jp": "My alarm didn't go off this morning, so I overslept and was late for school.",
+    "hint": "go ___",
+    "audio": {
+      "file": "f1",
+      "start": 65.733,
+      "end": 70.246
+    }
+  },
+  {
+    "id": "D10",
+    "sec": "D",
+    "sent": 36,
+    "q": "途中で交通渋滞に巻き込まれ、会議に間に合わなかった。
+→ We were ____ ____ by a traffic jam on the way.",
+    "a": "held up",
+    "n": "hold up「遅らせる・足止めする」。",
+    "jp": "We were held up by a traffic jam on the way and couldn't make it to the meeting in time.",
+    "hint": "held ___",
+    "audio": {
+      "file": "f1",
+      "start": 74.513,
+      "end": 79.223
+    }
+  },
+  {
+    "id": "D11",
+    "sec": "D",
+    "sent": 43,
+    "q": "ソウタはいつも知らない単語が出てきたら辞書で調べようとする。
+→ Sota always tries to ____ ____ new words in his dictionary.",
+    "a": "look up",
+    "n": "look up「（辞書で）調べる」。",
+    "jp": "Sota always tries to look up new words in his dictionary whenever they come up.",
+    "hint": "look ___",
+    "audio": {
+      "file": "f1",
+      "start": 87.123,
+      "end": 92.033
+    }
+  },
+  {
+    "id": "D12",
+    "sec": "D",
+    "sent": 52,
+    "q": "WHOは世界保健機関を表す。
+→ WHO ____ ____ the World Health Organization.",
+    "a": "stands for",
+    "n": "stand for「〜を表す・〜の略である」。",
+    "jp": "WHO stands for the World Health Organization.",
+    "hint": "stands ___",
+    "audio": {
+      "file": "f1",
+      "start": 107.288,
+      "end": 111.027
+    }
+  },
+  {
+    "id": "D13",
+    "sec": "D",
+    "sent": 86,
+    "q": "どの学校を選ぶかは、完全に親次第だ。
+→ It is all ____ ____ the parents to decide which schools to choose.",
+    "a": "up to",
+    "n": "be up to〜「〜次第である」。",
+    "jp": "It is all up to the parents to decide which schools to choose for their young children.",
+    "hint": "up ___",
+    "audio": {
+      "file": "f2",
+      "start": 18.778,
+      "end": 23.824
+    }
+  },
+  {
+    "id": "D14",
+    "sec": "D",
+    "sent": 116,
+    "q": "昨日、バス停でメアリーの兄に偶然会った。
+→ I ____ ____ Mary's brother at the bus stop yesterday.",
+    "a": "ran into",
+    "n": "run into「偶然出会う」＝come across。",
+    "jp": "I ran into Mary's brother at the bus stop yesterday.",
+    "hint": "ran ___",
+    "audio": {
+      "file": "f2",
+      "start": 125.223,
+      "end": 128.857
+    }
+  },
+  {
+    "id": "D15",
+    "sec": "D",
+    "sent": 153,
+    "q": "ガス欠にならないよう気をつけなければならない。
+→ We must ____ ____ ____ that we don't run out of gas.",
+    "a": "see to it",
+    "n": "see to it that〜「〜するよう確実にする」。",
+    "jp": "When driving on an expressway, we must see to it that we don't run out of gas.",
+    "hint": "see ___ ___",
+    "audio": {
+      "file": "f3",
+      "start": 64.893,
+      "end": 70.09
+    }
+  },
+  {
+    "id": "D16",
+    "sec": "D",
+    "sent": 168,
+    "q": "近くにいる時には立ち寄ってください。
+→ I hope you'll ____ ____ when you're in the neighborhood.",
+    "a": "drop in",
+    "n": "drop in「立ち寄る」＝stop by。",
+    "jp": "Now that you know where I live, I hope you'll drop in when you're in the neighborhood.",
+    "hint": "drop ___",
+    "audio": {
+      "file": "f3",
+      "start": 128.026,
+      "end": 132.054
+    }
+  }
+];
+const GRADES=[
+  {min:20,max:20,emoji:'\ud83c\udfc6',grade:'Perfect!',    color:'#f59e0b',comment:'\u5168\u554f\u6b63\u89e3\uff01\u7d20\u6674\u3089\u3057\u3044\u3067\u3059\uff01'},
+  {min:18,max:19,emoji:'\ud83c\udf1f',grade:'Excellent!',  color:'#22c55e',comment:'\u305d\u306e\u8abf\u5b50\u3067\u3053\u308c\u304b\u3089\u3082\u9811\u5f35\u308a\u307e\u3057\u3087\u3046\uff01'},
+  {min:15,max:17,emoji:'\ud83d\udc4f',grade:'Very Good!',  color:'#3b82f6',comment:'\u5927\u5909\u3088\u304f\u3067\u304d\u307e\u3057\u305f\uff01\u3082\u3046\u5c11\u3057\u3067\u5b8c\u74a7\u3067\u3059\u3002'},
+  {min:12,max:14,emoji:'\ud83d\udcaa',grade:'Good!',       color:'#60a5fa',comment:'\u826f\u3044\u3067\u3059\u3088\uff01\u5f15\u304d\u7d9a\u304d\u7df4\u7fd2\u3057\u307e\u3057\u3087\u3046\u3002'},
+  {min:9, max:11,emoji:'\ud83d\udcda',grade:'Keep Going!', color:'#a855f7',comment:'\u3082\u3046\u4e00\u606f\uff01\u7e70\u308a\u8fd4\u3057\u3067\u5fc5\u305a\u4e0a\u9054\u3057\u307e\u3059\u3002'},
+  {min:0, max:8, emoji:'\ud83d\udca1',grade:'Try Again!',  color:'#ef4444',comment:'\u3053\u308c\u304b\u3089\u3067\u3059\uff01\u3053\u306e\u8abf\u5b50\u3067\u9811\u5f35\u308a\u307e\u3057\u3087\u3046\u3002'},
+];
+function getGrade(n){return GRADES.find(g=>n>=g.min&&n<=g.max)||GRADES[GRADES.length-1];}
+const ST={qs:[],cur:0,done:false,sc:{A:0,B:0,C:0,D:0},ok:0,ng:0,t0:Date.now()};
+let _qtimer=null,_qsec=30;
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];}return a;}
+let _ae={};
+function getAud(k){if(!_ae[k])_ae[k]=new Audio(MP3[k]);return _ae[k];}
+let _ca=null;
+function playClip(f,s,e){if(_ca)_ca.pause();const a=getAud(f);if(!a)return;a.currentTime=s;a.play();_ca=a;const st=()=>{if(a.currentTime>=e){a.pause();a.removeEventListener('timeupdate',st);}};a.addEventListener('timeupdate',st);}
+function init(){
+  const p={};['A','B','C','D'].forEach(s=>p[s]=shuffle(POOL.filter(q=>q.sec===s)).slice(0,5));
+  ST.qs=shuffle([...p.A,...p.B,...p.C,...p.D]);
+  ST.cur=0;ST.done=false;ST.sc={A:0,B:0,C:0,D:0};ST.ok=0;ST.ng=0;ST.t0=Date.now();
+  document.getElementById('pf').style.width='0%';updateHdr();render();
+}
+function updateHdr(){
+  const q=ST.qs[ST.cur];
+  ['A','B','C','D'].forEach(s=>{const t=document.getElementById('tab-'+s);t.className='tab '+s+(q&&q.sec===s?' active':'');});
+  document.getElementById('sc-ok').textContent=ST.ok;document.getElementById('sc-ng').textContent=ST.ng;
+  document.getElementById('sc-pos').textContent=(ST.cur<20?ST.cur+1:20)+'/20\u554f';
+  document.getElementById('pf').style.width=(Math.min(ST.cur,20)/20*100)+'%';
+}
+function startQTimer(q){
+  stopQTimer();if(q.sec==='A')return;
+  _qsec=30;updateQTimerUI(30);
+  _qtimer=setInterval(()=>{_qsec--;updateQTimerUI(_qsec);if(_qsec<=0){stopQTimer();if(!ST.done){ST.done=true;ST.ng++;const q2=ST.qs[ST.cur];const i=document.getElementById('ai');if(i){i.disabled=true;i.classList.add('ng');}const sb=document.getElementById('sb');if(sb)sb.disabled=true;showFB(false,q2,true);}}},1000);
+}
+function stopQTimer(){clearInterval(_qtimer);_qtimer=null;}
+function updateQTimerUI(sec){
+  const bar=document.getElementById('qtbar'),num=document.getElementById('qtnum');if(!bar||!num)return;
+  bar.style.width=(sec/30*100)+'%';num.textContent=sec+'s';
+  const c=sec<=5?'danger':sec<=10?'warn':'';
+  bar.className='qtimer-bar'+(c?' '+c:'');num.className='qtimer-num'+(c?' '+c:'');
+}
+const STYPE={A:'4\u62e9 | \u53e5\u52d5\u8a5e\u9078\u629e',B:'\u53e5\u52d5\u8a5e | \u9023\u8a9e\u88dc\u5145',C:'\u53e5\u52d5\u8a5e | \u8a00\u3044\u63db\u3048',D:'\u53e5\u52d5\u8a5e | \u548c\u2192\u82f1'};
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function eA(s){return String(s).replace(/'/g,'&#39;');}
+function bfy(s){return esc(s).replace(/____/g,'<span class="blank">\u2003\u2003\u2003\u2003\u2003\u2003</span>');}
+function render(){
+  if(ST.cur>=20){stopQTimer();renderResult();return;}
+  const q=ST.qs[ST.cur];ST.done=false;updateHdr();
+  const au=q.audio;
+  const abtn=`<button class="abtn" onclick="playClip('${au.file}',${au.start},${au.end})"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>\u25b6 \u4f8b\u6587\u3092\u8074\u304f</button>`;
+  let qtxt='';
+  if(q.sec==='D'){const SEP='\n\u2192 ';const idx=q.q.indexOf(SEP);const jpP=idx>=0?q.q.substring(0,idx):q.q;const enP=idx>=0?q.q.substring(idx+SEP.length):'';qtxt=`<div class="qtext-jp">${esc(jpP)}</div><div class="qtext-en">\u2192 ${bfy(enP)}</div>`;}
+  else if(q.sec==='C'){const lines=q.q.split('\n');qtxt=`<div class="qtext">${lines.map(l=>bfy(l)).join('<br>')}</div>`;}
+  else{qtxt=`<div class="qtext">${bfy(q.q)}</div>`;}
+  const guide=(q.sec==='B')?`<div class="qtext-guide">\ud83d\udcdd ${esc(q.jp)}</div>`:'';
+  const timerBar=(q.sec!=='A')?`<div class="qtimer-wrap"><div class="qtimer-bar-bg"><div class="qtimer-bar" id="qtbar" style="width:100%"></div></div><div class="qtimer-num" id="qtnum">30s</div></div>`:'';
+  let inp='';
+  if(q.sec==='A'){const opts=shuffle([...q.opts]);inp=`<div class="choices">${opts.map((o,i)=>`<button class="cbtn" onclick="pick(this,'${eA(o)}')" data-v="${eA(o)}"><span class="lbl">${['\u2460','\u2461','\u2462','\u2463'][i]}</span>${esc(o)}</button>`).join('')}</div>`;}
+  else{const hp=(q.hint&&q.hint.trim())?`<button class="hbtn" id="hbtn" onclick="showHint()">\ud83d\udca1 \u30d2\u30f3\u30c8\u3092\u898b\u308b</button><div class="hbox" id="hbox">\u30d2\u30f3\u30c8: ${esc(q.hint)}</div>`:'';inp=`<div class="iarea">${timerBar}<div class="irow"><input class="tinput" id="ai" placeholder="\u7b54\u3048\u3092\u5165\u529b\u2026" onkeydown="if(event.key==='Enter')sub()"><button class="sbtn" id="sb" onclick="sub()">\u78ba\u8a8d</button></div>${hp}</div>`;}
+  document.getElementById('main').innerHTML=`<div class="qcard"><div class="qmeta"><span class="qnum-badge ${q.sec}">Q${ST.cur+1}/20</span><span class="qtype-lbl">${STYPE[q.sec]}</span></div>${qtxt}${guide}${abtn}${inp}<div class="fb" id="fb"></div><button class="nxtbtn" id="nb" onclick="nxt()">\u6b21\u306e\u554f\u984c \u2192</button></div>`;
+  if(q.sec!=='A'){const i=document.getElementById('ai');if(i)setTimeout(()=>i.focus(),80);if(q.hint&&q.hint.trim()){const h=document.getElementById('hbtn');if(h)h.style.display='block';}setTimeout(()=>startQTimer(q),100);}
+}
+function showHint(){const b=document.getElementById('hbtn'),h=document.getElementById('hbox');if(b)b.style.display='none';if(h)h.style.display='block';}
+function pick(btn,sel){
+  if(ST.done)return;ST.done=true;const q=ST.qs[ST.cur];
+  document.querySelectorAll('.cbtn').forEach(b=>{b.disabled=true;if(b.dataset.v===q.a)b.classList.add('ok');});
+  const ok=(sel===q.a)||(q.alts&&q.alts.length&&q.alts.includes(sel));
+  btn.classList.remove('ok');btn.classList.add(ok?'ok':'ng');
+  if(ok){ST.sc[q.sec]++;ST.ok++;}else ST.ng++;showFB(ok,q);
+}
+function norm(s){return s.trim().toLowerCase().replace(/[\u3000\s]+/g,' ').replace(/[\uff01-\uff5e]/g,c=>String.fromCharCode(c.charCodeAt(0)-0xFEE0)).replace(/[.,!?\u3002\u3001\u2026\/]/g,'').trim();}
+function checkAns(input,q){const ni=norm(input);if(ni===norm(q.a))return true;if(q.alts&&q.alts.length&&q.alts.some(alt=>norm(alt)===ni))return true;return false;}
+function sub(){if(ST.done)return;const i=document.getElementById('ai');if(!i||!i.value.trim())return;stopQTimer();ST.done=true;const q=ST.qs[ST.cur];const ok=checkAns(i.value,q);i.disabled=true;i.classList.add(ok?'ok':'ng');const sb=document.getElementById('sb');if(sb)sb.disabled=true;if(ok){ST.sc[q.sec]++;ST.ok++;}else ST.ng++;showFB(ok,q);}
+function showFB(ok,q,timeout=false){
+  if(ok)playClip(q.audio.file,q.audio.start,q.audio.end);
+  const fb=document.getElementById('fb');fb.className='fb '+(ok?'ok':'ng');fb.style.display='block';
+  const mk=ok?'\u2713 \u6b63\u89e3':(timeout?'\u23f0 \u6642\u9593\u5207\u308c':'\u2717 \u4e0d\u6b63\u89e3');
+  const ansDisp=q.alts&&q.alts.length?[q.a,...q.alts].join(' / '):q.a;
+  fb.innerHTML=`<div class="fb-tabs"><div class="fbtab active" id="ft-ans" onclick="fbTab('ans')">\u6b63\u89e3\u3068\u89e3\u8aac</div><div class="fbtab" id="ft-jp" onclick="fbTab('jp')">\u4f8b\u6587\u30fb\u65e5\u672c\u8a9e\u8a33</div></div><div class="fbc show" id="fc-ans"><div class="fb-ans-row">${mk}\u3000\u6b63\u89e3\uff1a<span class="fb-ans">${esc(ansDisp)}</span></div><div class="fb-note">${esc(q.n)}</div></div><div class="fbc" id="fc-jp"><div class="fb-jp">${esc(q.jp)}</div></div>`;
+  document.getElementById('nb').style.display='block';
+  document.getElementById('sc-ok').textContent=ST.ok;document.getElementById('sc-ng').textContent=ST.ng;
+}
+function fbTab(t){['ans','jp'].forEach(x=>{document.getElementById('ft-'+x).classList.toggle('active',x===t);document.getElementById('fc-'+x).classList.toggle('show',x===t);});}
+function nxt(){stopQTimer();ST.cur++;ST.done=false;render();}
+function renderResult(){
+  document.getElementById('pf').style.width='100%';document.getElementById('sc-pos').textContent='\u5b8c\u4e86\uff01';
+  const e=Math.floor((Date.now()-ST.t0)/1000),mm=String(Math.floor(e/60)).padStart(2,'0'),ss=String(e%60).padStart(2,'0');
+  const g=getGrade(ST.ok);
+  document.getElementById('main').innerHTML=
+    `<div class="scard">
+      <div class="s-grade" style="color:${g.color}">${g.emoji} ${g.grade}</div>
+      <div class="s-comment" style="color:${g.color}">${g.comment}</div>
+      <div class="sbig">${ST.ok}</div>
+      <div class="slbl">/ 20\u554f\u6b63\u89e3 &nbsp;\u23f1 ${mm}:${ss}</div>
+      <div class="ssecs">
+        <div class="ssec A"><div class="sn">Section A<br>4\u62e9</div><div class="sv">${ST.sc.A}/5</div></div>
+        <div class="ssec B"><div class="sn">Section B<br>\u9023\u8a9e\u88dc\u5145</div><div class="sv">${ST.sc.B}/5</div></div>
+        <div class="ssec C"><div class="sn">Section C<br>\u8a00\u3044\u63db\u3048</div><div class="sv">${ST.sc.C}/5</div></div>
+        <div class="ssec D"><div class="sn">Section D<br>\u548c\u2192\u82f1</div><div class="sv">${ST.sc.D}/5</div></div>
+      </div>
+      <button class="rbtn p" onclick="init()">\ud83d\udd00 \u5225\u306e20\u554f\u306b\u6311\u6226</button>
+      <button class="rbtn s" onclick="init()">\u3082\u3046\u4e00\u5ea6</button>
+    </div>`;
+}
+setInterval(()=>{if(ST.cur<20){const e=Math.floor((Date.now()-ST.t0)/1000);document.getElementById('tmr').textContent=Math.floor(e/60)+':'+(e%60<10?'0':'')+(e%60);}},1000);
+init();
+</script>
+</body>
+</html>
